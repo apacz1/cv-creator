@@ -2,14 +2,10 @@ import Input from "./Input";
 
 function NameInfo() {
   return (
-    <div className="nameInfo">
-      <Input className="name" text="Name: " id="name" type="text" />
-      <Input
-        className="lastName"
-        text="Last Name: "
-        id="lastName"
-        type="text"
-      />
+    <div className="sectionContainer">
+      <h2>Personal information: </h2>
+      <Input text="Name:" id="name" type="text" />
+      <Input text="Last Name:" id="lastName" type="text" />
     </div>
   );
 }

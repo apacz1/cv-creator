@@ -1,15 +1,15 @@
 import NameInfo from "./components/NameInfo";
 import SchoolInfo from "./components/SchoolInfo";
+import WorkInfo from "./components/WorkInfo";
 
 function App() {
   return (
     <>
       <h1>CV Creator</h1>
-      <div className="app-container">
-        <div className="input-container">
-          <NameInfo />
-          <SchoolInfo />
-        </div>
+      <div className="appContainer">
+        <NameInfo />
+        <SchoolInfo />
+        <WorkInfo />
       </div>
     </>
   );
