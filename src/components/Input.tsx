@@ -1,8 +1,8 @@
-function Input({ text, id, type }: { text: string; id: string; type: string }) {
+function Input({ text, type }: { text: string; type: string }) {
   return (
     <div className="inputContainer">
-      <label htmlFor={id}>{text}</label>
-      <input type={type} id={id} />
+      <label>{text}</label>
+      <input type={type} />
     </div>
   );
 }

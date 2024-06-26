@@ -4,8 +4,8 @@ function NameInfo() {
   return (
     <div className="sectionContainer">
       <h2>Personal information: </h2>
-      <Input text="Name:" id="name" type="text" />
-      <Input text="Last Name:" id="lastName" type="text" />
+      <Input text="Name:" type="text" />
+      <Input text="Last Name:" type="text" />
     </div>
   );
 }
