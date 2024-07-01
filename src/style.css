@@ -62,8 +62,6 @@ input {
 }
 
 button {
-  width: 2rem;
-  height: 2rem;
   border: 0;
   background-color: white;
   cursor: pointer;
@@ -82,4 +80,20 @@ button {
 
 .removeBtn:hover {
   background-color: white;
+}
+
+.addBtn,
+.removeBtn {
+  width: 2rem;
+  height: 2rem;
+}
+
+.generate {
+  border: 1px solid grey;
+  border-radius: 10px;
+  text-align: center;
+  padding: 15px 30px;
+  background-color: black;
+  color: white;
+  margin: 2% 0;
 }
