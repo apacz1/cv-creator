@@ -88,7 +88,8 @@ button {
   height: 2rem;
 }
 
-.generate {
+.generate,
+.editBtn {
   border: 1px solid grey;
   border-radius: 10px;
   text-align: center;
@@ -96,4 +97,34 @@ button {
   background-color: black;
   color: white;
   margin: 2% 0;
+}
+
+.editBtn {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.cvContainer {
+  background: white;
+  width: 21cm;
+  height: 29.7cm;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding: 1cm;
+}
+
+.cvEducation,
+.cvWork {
+  border-bottom: 1px solid black;
+  padding: 0;
+  text-align: left;
+}
+
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
