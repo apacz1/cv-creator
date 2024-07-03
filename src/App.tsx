@@ -66,11 +66,17 @@ function App() {
     const updateSchoolInfo = formData.educationInfo.map((item) =>
       item.id === data.id ? data : item
     );
-    console.log(updateSchoolInfo);
     setFormData({ ...formData, educationInfo: updateSchoolInfo });
   };
 
-  const addForm = () => {
+  const updateWorkInfo = (data: WorkInfoData) => {
+    const updateWorkInfo = formData.workInfo.map((item) =>
+      item.id === data.id ? data : item
+    );
+    setFormData({ ...formData, workInfo: updateWorkInfo });
+  };
+
+  const addEducationForm = () => {
     const tempEducation = [...formData.educationInfo];
     tempEducation.push({
       id: uuidv4(),
@@ -82,12 +88,30 @@ function App() {
     setFormData({ ...formData, educationInfo: tempEducation });
   };
 
+  const addWorkForm = () => {
+    const tempWork = [...formData.workInfo];
+    tempWork.push({
+      id: uuidv4(),
+      companyName: "",
+      position: "",
+      dateStart: "",
+      dateEnd: "",
+    });
+    setFormData({ ...formData, workInfo: tempWork });
+  };
+
   const removeEducationById = (idToRemove: string) => {
     const filteredEducation = formData.educationInfo.filter((item) => {
       return item.id !== idToRemove;
     });
-    console.log(filteredEducation);
     setFormData({ ...formData, educationInfo: filteredEducation });
+  };
+
+  const removeWorkById = (idToRemove: string) => {
+    const filteredWork = formData.workInfo.filter((item) => {
+      return item.id !== idToRemove;
+    });
+    setFormData({ ...formData, workInfo: filteredWork });
   };
 
   return (
@@ -107,9 +131,17 @@ function App() {
             updateSchoolInfo={updateEducationInfo}
           />
         ))}
-        <AddButton onClick={addForm} />
-        <WorkInfo />
-        <AddButton onClick={addForm} />
+        <AddButton onClick={addEducationForm} />
+        <h2>Work experience: </h2>
+        {formData.workInfo.map((workInfo) => (
+          <WorkInfo
+            key={workInfo.id}
+            data={workInfo}
+            removeForm={() => removeWorkById(workInfo.id)}
+            updateWorkInfo={updateWorkInfo}
+          />
+        ))}
+        <AddButton onClick={addWorkForm} />
         <button
           className="generate"
           onClick={() => {

@@ -1,49 +1,83 @@
-import AddButton from "./AddButton";
 import Input from "./Input";
-import { Fragment, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import TrashBin from "../assets/delete.svg?react";
+import { WorkInfoData } from "../App";
 
-function WorkInfo() {
-  const [forms, setForms] = useState<string[]>([uuidv4()]);
-
-  const addForm = () => {
-    setForms([...forms, uuidv4()]);
-  };
-
-  const removeForm = (idToRemove: string) => {
-    const filteredForms = forms.filter((id) => {
-      return id !== idToRemove;
-    });
-    setForms(filteredForms);
+function WorkInfo({
+  data,
+  removeForm,
+  updateWorkInfo,
+}: {
+  data: WorkInfoData;
+  removeForm: () => void;
+  updateWorkInfo: (data: WorkInfoData) => void;
+}) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let updatedWorkInfo: WorkInfoData;
+    if (e.target.id.startsWith("company")) {
+      const companyName = e.target.value;
+      updatedWorkInfo = {
+        ...data,
+        companyName,
+      };
+    } else if (e.target.id.startsWith("position")) {
+      const position = e.target.value;
+      updatedWorkInfo = {
+        ...data,
+        position,
+      };
+    } else if (e.target.id.startsWith("dateStart")) {
+      const dateStart = e.target.value;
+      updatedWorkInfo = {
+        ...data,
+        dateStart,
+      };
+    } else {
+      const dateEnd = e.target.value;
+      updatedWorkInfo = {
+        ...data,
+        dateEnd,
+      };
+    }
+    updateWorkInfo(updatedWorkInfo);
   };
 
   return (
     <>
-      <h2>Work experience: </h2>
-      {forms.map((id) => {
-        return (
-          <Fragment key={id}>
-            <div className="sectionContainer">
-              <Input text="Company name:" type="text" />
-              <Input text="Position:" type="text" />
-              <div className="dateContainer">
-                <Input text="Work start date:" type="date" />
-                <Input text="Work end date:" type="date" />
-              </div>
-              <button
-                className="removeBtn"
-                onClick={() => {
-                  removeForm(id);
-                }}
-              >
-                <TrashBin />
-              </button>
-            </div>
-          </Fragment>
-        );
-      })}
-      <AddButton onClick={addForm} />
+      <div className="sectionContainer">
+        <Input
+          text="Company name:"
+          type="text"
+          onChange={handleChange}
+          id={`company${data.id}`}
+          value={data.companyName}
+        />
+        <Input
+          text="Position:"
+          type="text"
+          onChange={handleChange}
+          id={`position${data.id}`}
+          value={data.position}
+        />
+        <div className="dateContainer">
+          <Input
+            text="Work start date:"
+            type="date"
+            onChange={handleChange}
+            id={`dateStart${data.id}`}
+            value={data.dateStart}
+          />
+          <Input
+            text="Work end date:"
+            type="date"
+            onChange={handleChange}
+            id={`dateEnd${data.id}`}
+            value={data.dateEnd}
+          />
+        </div>
+        <button className="removeBtn" onClick={removeForm}>
+          <TrashBin />
+        </button>
+      </div>
     </>
   );
 }
